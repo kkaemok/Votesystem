@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(':core')
+    compileOnly "org.spigotmc:spigot-api:${project.findProperty('spigotApiVersion')}"
+    compileOnly "com.github.NuVotifier:NuVotifier:${project.findProperty('nuvotifierVersion')}"
+}
+
+tasks.withType(Jar).configureEach {
+    from(project(':core').sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

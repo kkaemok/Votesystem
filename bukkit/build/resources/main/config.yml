@@ -1,0 +1,6 @@
+﻿reward-command: "레능 코인 {player} 150"
+message-enabled: true
+message-voted: "추천 감사합니다! 150 코인이 지급되었습니다."
+data-storage: "data.yml"
+command-permission: "votesystem.reload"
+recommend-link: "https://example.com/vote"

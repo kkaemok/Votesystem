@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(':core')
+    compileOnly "com.velocitypowered:velocity-api:${project.findProperty('velocityApiVersion')}"
+    annotationProcessor "com.velocitypowered:velocity-api:${project.findProperty('velocityApiVersion')}"
+    compileOnly "com.github.NuVotifier:NuVotifier:${project.findProperty('nuvotifierVersion')}"
+    implementation "org.spongepowered:configurate-yaml:${project.findProperty('configurateVersion')}"
+}
+
+tasks.withType(Jar).configureEach {
+    from(project(':core').sourceSets.main.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

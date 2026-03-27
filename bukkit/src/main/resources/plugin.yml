@@ -1,0 +1,16 @@
+name: VoteSystem
+version: 1.0.0
+main: org.kkaemok.votesystem.bukkit.VoteSystemBukkitPlugin
+api-version: '1.21'
+depend: [Votifier]
+commands:
+  votesystem:
+    description: Vote system commands
+    usage: /votesystem reload
+  추천:
+    description: Send vote link
+    usage: /추천
+permissions:
+  votesystem.reload:
+    description: Allows reloading VoteSystem
+    default: op

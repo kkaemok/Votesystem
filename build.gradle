@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = 'org.kkaemok'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of((project.findProperty('javaVersion') ?: '21') as int)
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
+        maven { url 'https://repo.papermc.io/repository/maven-public/' }
+        maven {
+            url 'https://nexus.velocitypowered.com/repository/maven-public/'
+            content {
+                includeGroup 'com.velocitypowered'
+            }
+        }
+        maven {
+            url 'https://jitpack.io'
+            content {
+                includeGroupByRegex 'com\\.github\\.NuVotifier(\\..*)?'
+            }
+        }
+        maven {
+            url 'https://repo2.acrylicstyle.xyz/'
+            content {
+                includeGroup 'com.vexsoftware'
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.release = (project.findProperty('javaVersion') ?: '21') as int
+    }
+
+    configurations.configureEach {
+        resolutionStrategy {
+            force "com.google.guava:guava:33.5.0-jre"
+            force "com.google.code.gson:gson:2.13.2"
+        }
+    }
+}

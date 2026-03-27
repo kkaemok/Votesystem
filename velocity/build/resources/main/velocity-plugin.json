@@ -1,0 +1,8 @@
+{
+  "id": "votesystem",
+  "name": "VoteSystem",
+  "version": "1.0-SNAPSHOT",
+  "description": "Vote reward system using NuVotifier forwarding",
+  "authors": ["kkaemok"],
+  "main": "org.kkaemok.votesystem.velocity.VoteSystemVelocityPlugin"
+}
