@@ -40,7 +40,7 @@ public final class VoteListener implements Listener {
             return;
         }
 
-        plugin.dispatchRewardCommand(player.getName());
+        plugin.dispatchRewardCommands(player.getName());
         data.incrementTotalVotes(playerKey);
 
         if (config.messageEnabled()) {

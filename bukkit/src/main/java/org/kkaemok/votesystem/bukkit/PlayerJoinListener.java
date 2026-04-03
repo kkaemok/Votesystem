@@ -22,22 +22,22 @@ public final class PlayerJoinListener implements Listener {
         String playerKey = PlayerNameUtil.normalizeKey(player.getName());
         VoteData data = plugin.getVoteData();
         int pending = data.getPending(playerKey);
-        if (pending <= 0) {
-            return;
-        }
-
         VoteConfig config = plugin.getVoteConfig();
-        for (int i = 0; i < pending; i++) {
-            plugin.dispatchRewardCommand(player.getName());
-            data.incrementTotalVotes(playerKey);
-        }
-        data.clearPending(playerKey);
+        if (pending > 0) {
+            for (int i = 0; i < pending; i++) {
+                plugin.dispatchRewardCommands(player.getName());
+                data.incrementTotalVotes(playerKey);
+            }
+            data.clearPending(playerKey);
 
-        if (config.messageEnabled()) {
-            String message = ChatColor.translateAlternateColorCodes('&', config.messageVoted());
-            player.sendMessage(message);
+            if (config.messageEnabled()) {
+                String message = ChatColor.translateAlternateColorCodes('&', config.messageVoted());
+                player.sendMessage(message);
+            }
+
+            plugin.saveData();
         }
 
-        plugin.saveData();
+        plugin.handleJoinReminder(player);
     }
 }

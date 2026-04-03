@@ -6,7 +6,7 @@ depend: [Votifier]
 commands:
   votesystem:
     description: Vote system commands
-    usage: /votesystem reload
+    usage: /votesystem <reload|remind [player|all]>
   추천:
     description: Send vote link
     usage: /추천
